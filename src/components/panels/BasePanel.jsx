@@ -1,20 +1,13 @@
 /**
  * BasePanel.jsx - Reusable panel component for all content panels
- *
- * Provides consistent styling and back button for all menu panels.
- * All panels share this structure:
- * - Header with panel name
- * - Content area
- * - Back button
  */
 
 import { useEffect } from 'react'
 import useSystemState from '../../state/useSystemState'
 
-function BasePanel({ title, children }) {
+function BasePanel({ title, children, fullscreen = false }) {
   const { goToMenu, bootStage } = useSystemState()
 
-  // Handle Escape key to go back
   useEffect(() => {
     if (bootStage !== 'in_panel') return
 
@@ -30,35 +23,35 @@ function BasePanel({ title, children }) {
 
   const containerStyle = {
     fontFamily: '"Courier New", Courier, monospace',
-    fontSize: '10px',
+    fontSize: fullscreen ? '16px' : '10px',
     color: '#33ff33',
-    backgroundColor: '#0a0a0a',
-    padding: '10px',
-    width: '240px',
-    height: '170px',
-    overflow: 'hidden',
-    textShadow: '0 0 3px #33ff33',
+    backgroundColor: '#000000',
+    padding: fullscreen ? '30px' : '10px',
+    width: '100%',
+    height: '100%',
+    textShadow: '0 0 5px #33ff33',
   }
 
   const headerStyle = {
     color: '#ffcc00',
-    marginBottom: '8px',
+    marginBottom: fullscreen ? '20px' : '8px',
     borderBottom: '1px solid #1a8c1a',
-    paddingBottom: '4px',
+    paddingBottom: fullscreen ? '10px' : '4px',
+    fontSize: fullscreen ? '20px' : '12px',
   }
 
   const backStyle = {
     color: '#1a8c1a',
-    fontSize: '8px',
-    marginTop: '8px',
+    fontSize: fullscreen ? '14px' : '8px',
+    marginTop: fullscreen ? '30px' : '8px',
     borderTop: '1px solid #1a8c1a',
-    paddingTop: '4px',
+    paddingTop: fullscreen ? '15px' : '4px',
   }
 
   return (
     <div style={containerStyle}>
       <div style={headerStyle}>▶ {title}</div>
-      <div style={{ overflow: 'auto', height: '115px' }}>
+      <div style={{ overflow: 'auto', height: fullscreen ? '280px' : '115px' }}>
         {children}
       </div>
       <div style={backStyle}>

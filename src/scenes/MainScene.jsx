@@ -18,7 +18,8 @@ function MainScene() {
         near: 0.1,
         far: 100,
       }}
-      style={{ background: '#0a0a0a' }}
+      style={{ background: '#000000' }}
+      dpr={2}
       shadows
     >
       {/* Ambient light */}
@@ -52,14 +53,16 @@ function MainScene() {
         far={3}
       />
 
-      {/* Camera controls */}
+      {/* Camera controls - restricted rotation */}
       <OrbitControls
         enableZoom={false}
         enablePan={false}
         enableRotate={true}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-        rotateSpeed={0.2}
+        maxAzimuthAngle={Math.PI / 12}
+        minAzimuthAngle={-Math.PI / 12}
+        maxPolarAngle={Math.PI / 2.2}
+        minPolarAngle={Math.PI / 2.8}
+        rotateSpeed={0.15}
       />
     </Canvas>
   )
