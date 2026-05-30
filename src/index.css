@@ -1,23 +1,82 @@
 /**
- * index.css - Global Styles for Retro Terminal Theme
+ * index.css - Global Styles for Cyberpunk OS Theme Portfolio
  *
- * CSS variables for the amber/green terminal aesthetic.
- * Reset and base styles for the full-screen 3D experience.
+ * Enhanced with smooth animations inspired by modern portfolio sites.
+ * Uses cubic-bezier easing for natural motion feel.
  */
 
-/* Color palette - retro terminal amber/green */
+/* Color palette - Cyberpunk OS */
 :root {
-  --green-primary: #33ff33;
-  --green-dim: #1a8c1a;
-  --green-dark: #0a330a;
-  --amber: #ffcc00;
-  --amber-dim: #cc9900;
-  --bg-dark: #0a0a0a;
-  --bg-darker: #050505;
-  --text-dim: #1a5c1a;
+  /* Surface colors */
+  --surface: #121318;
+  --surface-dim: #121318;
+  --surface-bright: #38393f;
+  --surface-container-lowest: #0d0e13;
+  --surface-container-low: #1a1b21;
+  --surface-container: #1e1f25;
+  --surface-container-high: #292a2f;
+  --surface-container-highest: #34343a;
+
+  /* On-surface colors */
+  --on-surface: #e3e1e9;
+  --on-surface-variant: #d0c6ab;
+  --inverse-surface: #e3e1e9;
+  --inverse-on-surface: #2f3036;
+  --outline: #999077;
+  --outline-variant: #4d4732;
+  --surface-tint: #e9c400;
+
+  /* Primary - Amber/Gold */
+  --primary: #fff6df;
+  --on-primary: #3a3000;
+  --primary-container: #ffd700;
+  --on-primary-container: #705e00;
+  --primary-fixed: #ffe16d;
+  --primary-fixed-dim: #e9c400;
+
+  /* Secondary - Cyan */
+  --secondary: #bdf4ff;
+  --on-secondary: #00363d;
+  --secondary-container: #00e3fd;
+  --on-secondary-container: #00616d;
+  --secondary-fixed: #9cf0ff;
+  --secondary-fixed-dim: #00daf3;
+
+  /* Tertiary - Indigo */
+  --tertiary: #fcf3ff;
+  --on-tertiary: #3b2754;
+  --tertiary-container: #e7d1ff;
+  --on-tertiary-container: #6b5586;
+
+  /* Error colors */
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+
+  /* Background */
+  --background: #121318;
+  --on-background: #e3e1e9;
+  --surface-variant: #34343a;
+
+  /* Cyberpunk accent colors - GREEN theme */
+  --cyber-pink: #ff2d95;
+  --cyber-green: #00ff88;
+  --cyber-green-dim: #00cc6a;
+  --cyber-green-dark: #0a3a1a;
+  --cyber-yellow: #ffe600;
 
   /* Typography */
-  --font-mono: 'Courier New', Courier, monospace, monospace;
+  --font-display: 'Space Grotesk', 'Courier New', monospace;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'Courier New', 'Consolas', monospace;
+
+  /* Smooth animation curves */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Reset */
@@ -29,68 +88,786 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background: var(--bg-darker);
+  overflow-x: hidden;
+  background: var(--background);
 }
 
 body {
-  font-family: var(--font-mono);
-  color: var(--green-primary);
+  font-family: var(--font-body);
+  color: var(--on-surface);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 #root {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 /* Selection color */
 ::selection {
-  background: var(--green-primary);
-  color: var(--bg-dark);
+  background: rgba(0, 255, 136, 0.3);
+  color: #e3e1e9;
 }
 
-/* Custom scrollbar - dark theme */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--green-dim);
-  border-radius: 0;
+  background: #2a3a2a;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--green-primary);
+  background: #00ff88;
 }
 
-/* Prevent text selection on UI elements */
-.no-select {
-  user-select: none;
-  -webkit-user-select: none;
+/* ========================================
+   SMOOTH ANIMATIONS
+   ======================================== */
+
+/* Fade in animation for elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Animation keyframes for potential use */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Staggered animation for list items */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth cursor blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
 
-@keyframes glow {
+/* Subtle pulse glow */
+@keyframes subtlePulse {
   0%, 100% {
-    text-shadow: 0 0 5px var(--green-primary);
+    opacity: 0.6;
   }
   50% {
-    text-shadow: 0 0 15px var(--green-primary), 0 0 25px var(--green-primary);
+    opacity: 1;
+  }
+}
+
+/* Status indicator pulse */
+@keyframes statusPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px #00ff88, 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px #00ff88, 0 0 20px rgba(0, 255, 136, 0.8);
+  }
+}
+
+/* Smooth cursor effect */
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+
+/* ========================================
+   SMOOTH TRANSITIONS
+   ======================================== */
+
+/* Base smooth transition for interactive elements */
+.smooth-transition {
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+/* Menu item smooth transitions */
+.menu-item {
+  transition: all 0.35s var(--ease-out-quint);
+}
+
+/* Button hover effects */
+.cyber-btn {
+  transition: all 0.3s var(--ease-out-quint);
+}
+
+/* Card hover effects */
+.glass-card {
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+/* ========================================
+   GLASSMORPHISM EFFECTS
+   ======================================== */
+
+.glass-card {
+  background: rgba(52, 52, 58, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.glass-card:hover {
+  background: rgba(56, 57, 63, 0.35);
+  border-color: rgba(0, 255, 136, 0.25);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 255, 136, 0.1);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.cyber-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.cyber-btn:hover::before {
+  opacity: 1;
+}
+
+.cyber-btn-primary {
+  background: linear-gradient(135deg, #ffe16d 0%, #ffd700 100%);
+  color: #3a3000;
+}
+
+.cyber-btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 215, 0, 0.35);
+}
+
+.cyber-btn-secondary {
+  background: transparent;
+  color: #00ff88;
+  border: 1px solid #00ff88;
+}
+
+.cyber-btn-secondary:hover {
+  background: rgba(0, 255, 136, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.15);
+}
+
+.cyber-btn-ghost {
+  background: transparent;
+  color: var(--on-surface);
+}
+
+.cyber-btn-ghost:hover {
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.05);
+}
+
+/* ========================================
+   FORM ELEMENTS
+   ======================================== */
+
+.cyber-input,
+.cyber-textarea {
+  width: 100%;
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--on-surface);
+  background: rgba(13, 14, 19, 0.8);
+  border: 1px solid #2a3a2a;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.cyber-input:hover,
+.cyber-textarea:hover {
+  border-color: #3a4a3a;
+}
+
+.cyber-input:focus,
+.cyber-textarea:focus {
+  border-color: #00ff88;
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.cyber-input::placeholder,
+.cyber-textarea::placeholder {
+  color: #5a8a5a;
+}
+
+/* ========================================
+   SMOOTH PANEL ANIMATIONS
+   ======================================== */
+
+.panel-container {
+  background: rgba(30, 31, 37, 0.6);
+  border: 1px solid rgba(42, 58, 42, 0.6);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  animation: fadeInScale 0.5s var(--ease-out-expo) forwards;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(26, 27, 33, 0.9) 0%, rgba(30, 31, 37, 0.6) 100%);
+  border-bottom: 1px solid rgba(42, 58, 42, 0.6);
+}
+
+/* ========================================
+   SMOOTH CARD ANIMATIONS
+   ======================================== */
+
+.project-card,
+.achievement-item,
+.paper-item,
+.contact-item {
+  background: rgba(26, 27, 33, 0.7);
+  border: 1px solid #2a3a2a;
+  border-radius: 12px;
+  transition: all 0.4s var(--ease-out-expo);
+  animation: fadeIn 0.5s var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--index, 0) * 0.1s);
+  opacity: 0;
+}
+
+/* Staggered animation for list items */
+.project-card:hover,
+.achievement-item:hover,
+.paper-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: #00ff88;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 255, 136, 0.1);
+}
+
+.contact-item:hover {
+  transform: translateX(4px);
+  border-color: #00ff88;
+  background: rgba(26, 27, 33, 0.9);
+}
+
+/* ========================================
+   AVATAR ANIMATIONS
+   ======================================== */
+
+.profile-avatar {
+  position: relative;
+  transition: all 0.4s var(--ease-spring);
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+/* ========================================
+   TAG ANIMATIONS
+   ======================================== */
+
+.cyber-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  background: rgba(42, 58, 42, 0.5);
+  color: #e3e1e9;
+  border: 1px solid transparent;
+  transition: all 0.3s var(--ease-out-quint);
+}
+
+.cyber-tag:hover {
+  background: rgba(0, 255, 136, 0.15);
+  border-color: rgba(0, 255, 136, 0.3);
+  color: #00ff88;
+  transform: translateY(-2px);
+}
+
+.cyber-tag.primary {
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.3);
+}
+
+.cyber-tag.success {
+  background: rgba(0, 255, 136, 0.15);
+  color: #00ff88;
+  border-color: rgba(0, 255, 136, 0.3);
+}
+
+/* ========================================
+   SOCIAL BUTTON ANIMATIONS
+   ======================================== */
+
+.social-btn {
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #e3e1e9;
+  background: rgba(26, 27, 33, 0.6);
+  border: 1px solid #2a3a2a;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.35s var(--ease-out-quint);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+  transition: left 0.5s var(--ease-smooth);
+}
+
+.social-btn:hover {
+  border-color: #00ff88;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.social-btn:hover::before {
+  left: 100%;
+}
+
+/* ========================================
+   SUBMIT BUTTON ANIMATIONS
+   ======================================== */
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #0a2e1a;
+  background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.submit-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+}
+
+.submit-btn:hover::before {
+  opacity: 1;
+}
+
+.submit-btn:active {
+  transform: translateY(-2px) scale(0.99);
+}
+
+/* ========================================
+   MENU ITEM ANIMATIONS
+   ======================================== */
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(26, 27, 33, 0.6);
+  border: 1px solid #2a3a2a;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #e3e1e9;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.menu-item:hover {
+  border-color: rgba(0, 255, 136, 0.5);
+  transform: translateX(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.menu-item:hover::before {
+  opacity: 1;
+}
+
+.menu-item.selected {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+/* ========================================
+   BACK BUTTON ANIMATIONS
+   ======================================== */
+
+.panel-back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: #00ff88;
+  background: transparent;
+  border: 1px solid #2a3a2a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-quint);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-back-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 255, 136, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.panel-back-btn:hover {
+  border-color: #00ff88;
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+.panel-back-btn:hover::before {
+  width: 60px;
+  height: 60px;
+}
+
+.panel-back-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   ICON CONTAINER ANIMATIONS
+   ======================================== */
+
+.menu-item-icon,
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 255, 136, 0.1);
+  border-radius: 10px;
+  color: #00ff88;
+  transition: all 0.4s var(--ease-spring);
+}
+
+.menu-item:hover .menu-item-icon,
+.menu-item:hover .icon-container {
+  transform: scale(1.1) rotate(-5deg);
+  background: rgba(0, 255, 136, 0.2);
+}
+
+.menu-item.selected .menu-item-icon,
+.menu-item.selected .icon-container {
+  background: rgba(0, 255, 136, 0.25);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+/* ========================================
+   STATUS INDICATOR ANIMATIONS
+   ======================================== */
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   GLOW EFFECTS
+   ======================================== */
+
+.glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px currentColor, 0 0 30px currentColor;
+}
+
+/* ========================================
+   PROFILE SECTION ANIMATIONS
+   ======================================== */
+
+.profile-section {
+  animation: fadeIn 0.6s var(--ease-out-expo) forwards;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: #0a2e1a;
+  position: relative;
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+.profile-avatar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+/* ========================================
+   SCROLL CONTAINER ANIMATIONS
+   ======================================== */
+
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #2a3a2a transparent;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #2a3a2a;
+  border-radius: 2px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #00ff88;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+
+.text-primary { color: #00ff88; }
+.text-secondary { color: #5a8a5a; }
+.text-muted { color: #7a9a7a; }
+.text-accent { color: #ffd700; }
+
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .menu-item {
+    padding: 14px 18px;
+  }
+
+  .profile-avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+  }
+
+  .contacts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION SUPPORT
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

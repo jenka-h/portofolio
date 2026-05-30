@@ -18,7 +18,7 @@ const useSystemState = create((set) => ({
   activePanel: null,
 
   // Number of menu items (for bounds checking)
-  menuItemCount: 5,
+  menuItemCount: 6,
 
   // Actions
   setBootStage: (stage) => set({ bootStage: stage }),
@@ -28,6 +28,8 @@ const useSystemState = create((set) => ({
   setSelectedIndex: (index) => set({ selectedIndex: index }),
 
   setActivePanel: (panel) => set({ activePanel: panel, bootStage: 'in_panel' }),
+
+  setSelectedIndex: (index) => set({ selectedIndex: index }),
 
   moveUp: () => set((state) => ({
     selectedIndex: Math.max(0, state.selectedIndex - 1)
