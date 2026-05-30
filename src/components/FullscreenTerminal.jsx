@@ -21,7 +21,7 @@ function ContactFooterTerminal() {
       bottom: 0,
       left: 0,
       right: 0,
-      padding: '24px 40px',
+      padding: '24px 40px 10px 40px',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -158,8 +158,9 @@ function FullscreenTerminal() {
 
       {/* Main container with terminal and footer */}
       <div style={{
-        width: '90%',
-        maxWidth: '680px',
+        width: '100%',
+        height: '80%',
+        maxWidth: '1000px',
         maxHeight: '90vh',
         display: 'flex',
         flexDirection: 'column',
@@ -175,10 +176,12 @@ function FullscreenTerminal() {
           background: '#1a1b21',
           border: '1px solid #2a3a2a',
           borderRadius: '12px 12px 0 0',
+          display: 'flex',
+          flexDirection: 'column',
           overflow: 'hidden',
           boxShadow: '0 0 60px rgba(0, 255, 136, 0.1), 0 20px 40px rgba(0, 0, 0, 0.4)',
         }}>
-          {/* Terminal title bar */}
+          {/* Terminal title bar - static */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -187,6 +190,7 @@ function FullscreenTerminal() {
             background: '#1e1f25',
             borderBottom: '1px solid #2a3a2a',
             borderRadius: '12px 12px 0 0',
+            flex: 'none',
           }}>
             <div style={{
               display: 'flex',
@@ -214,11 +218,11 @@ function FullscreenTerminal() {
             <div style={{ flex: 1 }} />
           </div>
 
-          {/* Terminal content */}
+          {/* Terminal content - scrollable */}
           <div style={{
             flex: 1,
             minHeight: 0,
-            overflow: 'hidden',
+            overflow: 'auto',
           }}>
             <TerminalMenu fullscreen />
           </div>

@@ -332,8 +332,8 @@ function TerminalMenu({ fullscreen = false }) {
 
   // Smooth panel view styles
   const panelViewStyle = {
-    padding: fullscreen ? '24px' : '10px',
-    maxHeight: fullscreen ? 'calc(100vh - 180px)' : '140px',
+    flex: 1,
+    minHeight: 0,
     overflow: 'auto',
     animation: 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
   }

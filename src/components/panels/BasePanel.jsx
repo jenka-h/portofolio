@@ -26,9 +26,11 @@ function BasePanel({ title, children, fullscreen = false }) {
     fontFamily: "'Space Grotesk', 'Courier New', monospace",
     color: '#e3e1e9',
     backgroundColor: 'transparent',
-    padding: fullscreen ? '24px 20px' : '0',
+    padding: fullscreen ? '24px 20px' : '10px',
     width: '100%',
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   }
 
   const headerStyle = {
@@ -39,6 +41,7 @@ function BasePanel({ title, children, fullscreen = false }) {
     paddingBottom: '14px',
     borderBottom: '1px solid #2a3a2a',
     animation: 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+    flex: 'none',
   }
 
   const titleStyle = {
@@ -75,8 +78,9 @@ function BasePanel({ title, children, fullscreen = false }) {
         <span style={titleStyle}>{title}</span>
       </div>
       <div style={{
+        flex: 1,
+        minHeight: 0,
         overflow: 'auto',
-        maxHeight: fullscreen ? 'calc(100vh - 280px)' : '120px',
         paddingRight: fullscreen ? '8px' : '0',
         animation: 'fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards',
         opacity: 0,
