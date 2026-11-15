@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react';
 import portrait from '../assets/me.jpeg';
 import { profile } from '../data/portfolio';
 
@@ -45,9 +45,17 @@ export default function About() {
                 VIEW RESUME <ArrowUpRight size={16} aria-hidden="true" />
               </button>
             )}
-            <a className="text-link" href={`mailto:${profile.email}`}>
-              {profile.email} <ArrowUpRight size={16} aria-hidden="true" />
-            </a>
+            <nav className="hero-socials" aria-label="Contact and social profiles">
+              <a href={`mailto:${profile.email}`} aria-label={`Email ${profile.email}`} title={profile.email}>
+                <Mail size={17} aria-hidden="true" />
+              </a>
+              <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                <Github size={17} aria-hidden="true" />
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                <Linkedin size={17} aria-hidden="true" />
+              </a>
+            </nav>
           </div>
         </div>
         <img

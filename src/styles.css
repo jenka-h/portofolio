@@ -69,8 +69,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c65b4f; outline-offs
 .primary-button { display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 999px; background: #c65b4f; color: #fff; font: 500 11px 'DM Mono', monospace; letter-spacing: .04em; transition: background .18s; }
 .primary-button:hover:not(:disabled) { background: #d16b5f; }
 .primary-button:disabled { cursor: not-allowed; opacity: .62; }
-.text-link { display: inline-flex; align-items: center; gap: 7px; color: #dedbd1; font-size: 13px; }
-.text-link:hover { color: #d18b7d; }
+
+.hero-socials { display: inline-flex; align-items: center; gap: 8px; }
+.hero-socials a { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid #46514b; border-radius: 50%; color: #c5cbc3; transition: color .18s, border-color .18s, background .18s; }
+.hero-socials a:hover { border-color: #d18b7d; background: #ffffff08; color: #fff; }
 .skills-summary { margin-top: 62px; padding-top: 22px; border-top: 1px solid #e8e5da24; }
 .skills-summary > h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 20px; color: #e8e5da; font-size: 16px; font-weight: 600; animation: section-arrive .42s cubic-bezier(.2, .7, .2, 1) both; }
 .skills-summary > h2::before { width: 9px; height: 9px; flex: 0 0 9px; border-radius: 50%; background: #d18b7d; box-shadow: 0 0 15px #d18b7d80; content: ''; }
