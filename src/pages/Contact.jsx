@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { profile } from '../data/portfolio';
 
 const socialLinks = [
@@ -36,7 +36,10 @@ export default function Contact() {
 
       <div className="site-footer__bottom">
         <span>© 2026 Jennifer Khang</span>
-        <span>{profile.location}</span>
+        <span className="site-footer__location">
+          <MapPin size={12} aria-hidden="true" />
+          <span>{profile.location}</span>
+        </span>
       </div>
     </footer>
   );

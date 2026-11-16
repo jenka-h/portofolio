@@ -5,7 +5,7 @@ import { researchPapers } from '../data/portfolio';
 export default function Papers() {
   return (
     <div className="page">
-      <SectionHeading>
+      <SectionHeading number="04">
         Research Papers
       </SectionHeading>
 

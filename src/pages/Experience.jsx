@@ -4,7 +4,7 @@ import { experiences } from '../data/portfolio';
 export default function Experience() {
   return (
     <div className="page page--experience">
-      <SectionHeading>
+      <SectionHeading number="02">
         Experience
       </SectionHeading>
 

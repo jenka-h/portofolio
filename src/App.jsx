@@ -1,14 +1,11 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import About from './pages/About';
+import Work from './pages/Work';
+import Experience from './pages/Experience';
+import Achievements from './pages/Achievements';
+import Papers from './pages/Papers';
 import Contact from './pages/Contact';
-
-const Work = lazy(() => import('./pages/Work'));
-const Experience = lazy(() => import('./pages/Experience'));
-const Achievements = lazy(() => import('./pages/Achievements'));
-const Papers = lazy(() => import('./pages/Papers'));
-
-
 
 const sections = [
   { id: 'about', Component: About },
@@ -21,14 +18,12 @@ const sections = [
 
 export default function App() {
   const [activePage, setActivePage] = useState('about');
-  const [contactVisible, setContactVisible] = useState(false);
-  const [loadedSections, setLoadedSections] = useState(() => new Set(['about', 'contact']));
+  const shellRef = useRef(null);
 
   useEffect(() => {
     if (window.location.hash) {
       window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
     }
-    document.getElementById('about')?.scrollIntoView({ behavior: 'instant' });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,23 +31,11 @@ export default function App() {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        const contactEntry = entries.find((entry) => entry.target.id === 'contact');
-        if (contactEntry) setContactVisible(contactEntry.isIntersecting);
-
-        const newlyVisible = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target.id);
-        if (newlyVisible.length) {
-          setLoadedSections((current) => {
-            const next = new Set(current);
-            newlyVisible.forEach((id) => next.add(id));
-            return next;
-          });
-        }
-
         if (visibleSections[0]) {
           setActivePage(visibleSections[0].target.id);
         }
       },
-      { threshold: [0.15, 0.35, 0.6], rootMargin: '-15% 0px -25% 0px' },
+      { threshold: [0.15, 0.35, 0.6], rootMargin: '-15% 0px -30% 0px' },
     );
 
     sections.forEach(({ id }) => {
@@ -63,37 +46,47 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const shell = shellRef.current;
+    if (!shell) return undefined;
+
+    const handlePointerMove = (e) => {
+      shell.style.setProperty('--cursor-x', `${e.clientX}px`);
+      shell.style.setProperty('--cursor-y', `${e.clientY}px`);
+    };
+
+    const handlePointerLeave = () => {
+      shell.style.setProperty('--cursor-x', '-1000px');
+      shell.style.setProperty('--cursor-y', '-1000px');
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('mouseleave', handlePointerLeave);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('mouseleave', handlePointerLeave);
+    };
+  }, []);
 
   function navigate(sectionId) {
     const section = document.getElementById(sectionId);
     if (!section) return;
 
     setActivePage(sectionId);
-    setLoadedSections((current) => new Set(current).add(sectionId));
-
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     section.scrollIntoView({ behavior: prefersReducedMotion ? 'instant' : 'smooth' });
   }
 
   return (
-    <div className="site-shell">
-      <div className="site-grain" aria-hidden="true" />
+    <div ref={shellRef} className="site-shell">
+      <div className="cursor-glow" aria-hidden="true" />
       <Navbar activePage={activePage} onNavigate={navigate} />
 
       <div className="site-content">
         <main id="main-content" className="page-container">
           {sections.map(({ id, Component }) => (
-            <section
-              id={id}
-              className={`portfolio-section${loadedSections.has(id) ? ' portfolio-section--loaded' : ''}${id === 'contact' && contactVisible ? ' portfolio-section--active' : ''}`}
-              key={id}
-              aria-busy={!loadedSections.has(id)}
-            >
-              {loadedSections.has(id) && (
-                <Suspense fallback={<div className="section-loading" aria-hidden="true" />}>
-                  <Component navigate={navigate} />
-                </Suspense>
-              )}
+            <section id={id} className="portfolio-section" key={id}>
+              <Component navigate={navigate} />
             </section>
           ))}
         </main>

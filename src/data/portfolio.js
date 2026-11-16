@@ -1,3 +1,6 @@
+import carbonlinkImg from '../assets/carbonlink.jpg';
+import skillscoutImg from '../assets/skillscout.png';
+
 export const profile = {
   displayName: 'Jennifer Khang',
   role: 'Informatics Engineering student',
@@ -36,17 +39,23 @@ export const navigation = [
 export const projects = [
   {
     title: 'CarbonLink',
+    category: 'Hackfest 2026 · 2nd Place',
     description:
       'An MRV platform for Indonesian smallholder agroforestry, combining land registration, carbon estimates, and aerial-image tree detection.',
-    imageLabel: 'CarbonLink project image placeholder',
+    stack: ['React', 'FastAPI', 'PyTorch', 'Computer Vision'],
+    image: carbonlinkImg,
     github: '',
+    url: 'https://www.linkedin.com/feed/update/urn:li:activity:7454591300672094209/',
   },
   {
     title: 'SkillScout Nusantara',
+    category: 'AI Job Matching · Bilingual NLP',
     description:
       'A bilingual job-matching platform that extracts skills from CVs, recommends relevant roles, and highlights skill gaps.',
-    imageLabel: 'SkillScout Nusantara project image placeholder',
+    stack: ['Next.js', 'TypeScript', 'FastAPI', 'PostgreSQL'],
+    image: skillscoutImg,
     github: 'https://github.com/CC26-PSU215/skillscout-nusantara',
+    url: '',
   },
 ];
 

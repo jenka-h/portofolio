@@ -1,8 +1,8 @@
-export default function SectionHeading({ children }) {
+export default function SectionHeading({ number, children }) {
   return (
     <header className="section-heading">
       <h2 className="section-heading__title">
-        <span className="section-heading__dot" aria-hidden="true" />
+        {number && <span className="section-heading__num">{number}</span>}
         {children}
       </h2>
     </header>
